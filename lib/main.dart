@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,8 +21,25 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class WelcomePage extends StatelessWidget {
+class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
+
+  @override
+  _WelcomePageState createState() => _WelcomePageState();
+}
+
+class _WelcomePageState extends State<WelcomePage> {
+  @override
+  void initState() {
+    super.initState();
+    // Mengatur delay selama 3 detik sebelum berpindah ke HomeScreen
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,27 +47,26 @@ class WelcomePage extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('lib/images/WelcomePage.jpg'), 
+            image: AssetImage('lib/images/WelcomePage.jpg'),
             fit: BoxFit.cover,
           ),
         ),
-        child: const Center(
+        child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               Text(
                 'Hi! Welcome to',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF99B5BD), 
+                  color: Color(0xFF99B5BD),
                 ),
               ),
-              
               Text(
                 'NookLet',
                 style: TextStyle(
-                  fontSize: 30, 
+                  fontSize: 30,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFFF6B047),
                 ),
