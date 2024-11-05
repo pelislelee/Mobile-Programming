@@ -12,7 +12,7 @@ class ChapterScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: const Icon(Icons.wb_sunny_outlined, color: Colors.orange),
-        actions: [
+        actions: const [
           Icon(Icons.format_size, color: Colors.red),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
@@ -25,7 +25,7 @@ class ChapterScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
+            const Center(
               child: Text(
                 'Chapter 1',
                 style: TextStyle(
@@ -34,10 +34,10 @@ class ChapterScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Expanded(
               child: Container(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.purple, width: 2),
                   borderRadius: BorderRadius.circular(8),
@@ -45,7 +45,7 @@ class ChapterScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Text(
                     loremIpsum(paragraphs: 3, words: 150),  // Generates 3 paragraphs with 150 words
-                    style: TextStyle(fontSize: 16, height: 1.5),
+                    style: const TextStyle(fontSize: 16, height: 1.5),
                   ),
                 ),
               ),

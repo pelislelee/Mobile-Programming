@@ -25,6 +25,7 @@ class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _WelcomePageState createState() => _WelcomePageState();
 }
 
@@ -35,8 +36,9 @@ class _WelcomePageState extends State<WelcomePage> {
     // Mengatur delay selama 3 detik sebelum berpindah ke HomeScreen
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
+        // ignore: use_build_context_synchronously
         context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
       );
     });
   }
@@ -51,10 +53,10 @@ class _WelcomePageState extends State<WelcomePage> {
             fit: BoxFit.cover,
           ),
         ),
-        child: Center(
+        child: const Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Text(
                 'Hi! Welcome to',
                 style: TextStyle(
