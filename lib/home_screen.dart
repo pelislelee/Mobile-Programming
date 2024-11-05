@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,11 +18,11 @@ class HomeScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.search, color: Colors.white),
+            icon: const Icon(Icons.search, color: Colors.white),
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(Icons.person, color: Colors.white),
+            icon: const Icon(Icons.person, color: Colors.white),
             onPressed: () {},
           ),
         ],
@@ -33,14 +35,14 @@ class HomeScreen extends StatelessWidget {
               height: 150,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                image: DecorationImage(
+                image: const DecorationImage(
                   image: AssetImage('assets/book_image.jpg'), // Ganti dengan gambar Anda
                   fit: BoxFit.cover,
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -53,10 +55,10 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SectionTitle(title: 'Continue Reading'),
-            BookGrid(books: ['Harry Potter', 'Jurassic Park', 'The Seven Husbands of Evelyn Hugo']),
-            SectionTitle(title: 'Popular'),
-            BookGrid(books: ['Nights in Sicily', 'The King of Kings', 'The Haunted']),
+            const SectionTitle(title: 'Continue Reading'),
+            const BookGrid(books: ['Harry Potter', 'Jurassic Park', 'The Seven Husbands of Evelyn Hugo']),
+            const SectionTitle(title: 'Popular'),
+            const BookGrid(books: ['Nights in Sicily', 'The King of Kings', 'The Haunted']),
           ],
         ),
       ),
@@ -67,7 +69,7 @@ class HomeScreen extends StatelessWidget {
 class FilterChipWidget extends StatelessWidget {
   final String label;
 
-  const FilterChipWidget({required this.label});
+  const FilterChipWidget({super.key, required this.label});
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +84,7 @@ class FilterChipWidget extends StatelessWidget {
 class SectionTitle extends StatelessWidget {
   final String title;
 
-  const SectionTitle({required this.title});
+  const SectionTitle({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +108,7 @@ class SectionTitle extends StatelessWidget {
 class BookGrid extends StatelessWidget {
   final List<String> books;
 
-  const BookGrid({required this.books});
+  const BookGrid({super.key, required this.books});
 
   @override
   Widget build(BuildContext context) {
@@ -114,9 +116,9 @@ class BookGrid extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: GridView.builder(
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: books.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
@@ -132,7 +134,7 @@ class BookGrid extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               Text(
                 books[index],
                 style: TextStyle(fontSize: 14, color: Colors.orange[800]),
