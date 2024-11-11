@@ -7,13 +7,15 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.teal[200],
+        backgroundColor: const Color(0xFF99B5BD),
         elevation: 0,
         title: const Text(
           'Hi user!\nWhat are we feeling like today?',
           style: TextStyle(
             fontSize: 18,
             color: Colors.white,
+            fontStyle: FontStyle.italic,
+            fontFamily: 'Knewave',
           ),
         ),
         actions: [
@@ -22,7 +24,7 @@ class HomeScreen extends StatelessWidget {
             onPressed: () {},
           ),
           IconButton(
-            icon: const Icon(Icons.person, color: Colors.white),
+            icon: const Icon(Icons.person, color: Color(0xFFFef3f1)),
             onPressed: () {},
           ),
         ],
@@ -30,6 +32,7 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            // Image Container
             Container(
               margin: const EdgeInsets.all(16),
               height: 150,
@@ -41,20 +44,25 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  FilterChipWidget(label: 'All'),
-                  FilterChipWidget(label: 'Romance'),
-                  FilterChipWidget(label: 'Fantasy'),
-                  FilterChipWidget(label: 'Horror'),
-                  FilterChipWidget(label: 'Mystery'),
-                  FilterChipWidget(label: 'Comedy'),
+
+            // Filter Chips Section
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              child: Wrap(
+                spacing: 0.1, // Jarak antar chip
+                runSpacing: 4.0, // Jarak antar baris
+                children: const [
+                  FilterChipWidget(label: 'All', backgroundColor: Color(0xFFB2DFDB)),
+                  FilterChipWidget(label: 'Romance', backgroundColor: Color(0xFFF8BBD0)),
+                  FilterChipWidget(label: 'Fantasy', backgroundColor: Color(0xFFE1BEE7)),
+                  FilterChipWidget(label: 'Horror', backgroundColor: Color(0xFFFFCDD2)),
+                  FilterChipWidget(label: 'Mystery', backgroundColor: Color(0xFFBBDEFB)),
+                  FilterChipWidget(label: 'Comedy', backgroundColor: Color(0xFFFFF9C4)),
                 ],
               ),
             ),
+
+            // Section Title and Book Grid
             const SectionTitle(title: 'Continue Reading'),
             const BookGrid(books: ['Harry Potter', 'Jurassic Park', 'The Seven Husbands of Evelyn Hugo']),
             const SectionTitle(title: 'Popular'),
@@ -66,21 +74,37 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+// FilterChipWidget Class
 class FilterChipWidget extends StatelessWidget {
   final String label;
+  final Color backgroundColor;
 
-  const FilterChipWidget({super.key, required this.label});
+  const FilterChipWidget({
+    super.key,
+    required this.label,
+    required this.backgroundColor,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ChoiceChip(
-      label: Text(label),
+      label: Text(
+        label,
+        style: const TextStyle(color: Colors.black), // Teks berwarna hitam
+      ),
       selected: false,
+      backgroundColor: backgroundColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20), // Membuat border lonjong/bulat
+        side: BorderSide(color: Colors.grey.shade300), // Menambahkan warna border abu-abu
+      ),
       onSelected: (selected) {},
     );
   }
 }
 
+
+// SectionTitle Class
 class SectionTitle extends StatelessWidget {
   final String title;
 
@@ -105,6 +129,7 @@ class SectionTitle extends StatelessWidget {
   }
 }
 
+// BookGrid Class
 class BookGrid extends StatelessWidget {
   final List<String> books;
 
