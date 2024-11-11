@@ -64,9 +64,21 @@ class HomeScreen extends StatelessWidget {
 
             // Section Title and Book Grid
             const SectionTitle(title: 'Continue Reading'),
-            const BookGrid(books: ['Harry Potter', 'Jurassic Park', 'The Seven Husbands of Evelyn Hugo']),
+            const BookGrid(
+              books: [
+                {'title': 'Harry Potter', 'image': 'assets/hp_cover.jpg'},
+                {'title': 'Jurassic Park', 'image': 'assets/jp_cover.jpg'},
+                {'title': 'The Seven Husbands of Evelyn Hugo', 'image': 'assets/evelyn_hugo_cover.jpg'},
+              ],
+            ),
             const SectionTitle(title: 'Popular'),
-            const BookGrid(books: ['Nights in Sicily', 'The King of Kings', 'The Haunted']),
+            const BookGrid(
+              books: [
+                {'title': 'Nights in Sicily', 'image': 'assets/nights_in_sicily_cover.jpg'},
+                {'title': 'The King of Kings', 'image': 'assets/king_of_kings_cover.jpg'},
+                {'title': 'The Haunted', 'image': 'assets/the_haunted_cover.jpg'},
+              ],
+            ),
           ],
         ),
       ),
@@ -103,7 +115,6 @@ class FilterChipWidget extends StatelessWidget {
   }
 }
 
-
 // SectionTitle Class
 class SectionTitle extends StatelessWidget {
   final String title;
@@ -131,7 +142,7 @@ class SectionTitle extends StatelessWidget {
 
 // BookGrid Class
 class BookGrid extends StatelessWidget {
-  final List<String> books;
+  final List<Map<String, String>> books; // Updated to accept both title and image URL/Asset
 
   const BookGrid({super.key, required this.books});
 
@@ -155,13 +166,16 @@ class BookGrid extends StatelessWidget {
               Container(
                 height: 100,
                 decoration: BoxDecoration(
-                  color: Colors.blue[300],
+                  image: DecorationImage(
+                    image: AssetImage(books[index]['image']!),
+                    fit: BoxFit.cover,
+                  ),
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
               const SizedBox(height: 4),
               Text(
-                books[index],
+                books[index]['title']!,
                 style: TextStyle(fontSize: 14, color: Colors.orange[800]),
                 textAlign: TextAlign.center,
               ),
