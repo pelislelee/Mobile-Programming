@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'genre_tag.dart';
+import 'chapter_screen.dart';
 
 class BookScreen extends StatelessWidget {
   @override

@@ -7,7 +7,7 @@ class ChapterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFFef3f1),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
