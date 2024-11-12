@@ -62,6 +62,39 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - lib/images/WelcomePage.jpg
+    - lib/images/bookcovers/agoodgirlsguide.jpeg
+    - lib/images/bookcovers/allthebrightplaces.jpeg
+    - lib/images/bookcovers/annaandthefrenchkiss.jpeg
+    - lib/images/bookcovers/divergent.jpeg
+    - lib/images/bookcovers/eleanorandpark.jpeg
+    - lib/images/bookcovers/five-feet-apart-cover.jpg
+    - lib/images/bookcovers/harrypotter.jpg
+    - lib/images/bookcovers/ifistay.png
+    - lib/images/bookcovers/illgiveyouthesun.jpg
+    - lib/images/bookcovers/legend.jpeg
+    - lib/images/bookcovers/lookingforalaska.webp
+    - lib/images/bookcovers/oneofusislying.jpg
+    - lib/images/bookcovers/papertowns.jpg
+    - lib/images/bookcovers/percyjackson.jpeg
+    - lib/images/bookcovers/redqueen.jpg
+    - lib/images/bookcovers/scythe.jpg
+    - lib/images/bookcovers/simonvs.jpg
+    - lib/images/bookcovers/sixofcrows.jpg
+    - lib/images/bookcovers/thefaultinourstars.jpg
+    - lib/images/bookcovers/thegiver.avif
+    - lib/images/bookcovers/thehungergames.jpg
+    - lib/images/bookcovers/theinheritancegames.jpg
+    - lib/images/bookcovers/theoutsiders.jpg
+    - lib/images/bookcovers/theperksofbeingawallflower.jpg
+    - lib/images/bookcovers/thesisterhood.jpg
+    - lib/images/bookcovers/trulydevious.webp
+    - lib/images/bookcovers/wewereliars.jpg
+    - lib/images/bookcovers/wonder.webp
+    - lib/images/slides/slide1.jpeg
+    - lib/images/slides/slide2.jpeg
+    - lib/images/slides/slide3.jpeg
+    - lib/images/slides/slide4.jpeg
+    - lib/images/slides/slide5.jpeg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
