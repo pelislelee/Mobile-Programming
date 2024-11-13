@@ -1,7 +1,50 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  late PageController _pageController;
+  int _currentPage = 0;
+  late Timer _timer;
+
+  final List<String> _images = [
+    'lib/images/slides/slide1.jpeg',
+    'lib/images/slides/slide2.jpeg',
+    'lib/images/slides/slide3.jpeg',
+    'lib/images/slides/slide4.jpeg',
+    'lib/images/slides/slide5.jpeg',
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: _currentPage);
+    _timer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
+      if (_currentPage < _images.length - 1) {
+        _currentPage++;
+      } else {
+        _currentPage = 0;
+      }
+      _pageController.animateToPage(
+        _currentPage,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +75,16 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Image Container
+            // Slideshow Section
             Container(
-              margin: const EdgeInsets.all(16),
-              height: 150,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                image: const DecorationImage(
-                  image: AssetImage('assets/book_image.jpg'), // Ganti dengan gambar Anda
-                  fit: BoxFit.cover,
-                ),
+              height: 180,
+              margin: const EdgeInsets.symmetric(vertical: 16),
+              child: PageView.builder(
+                controller: _pageController,
+                itemCount: _images.length,
+                itemBuilder: (context, index) {
+                  return SlideshowImage(imagePath: _images[index]);
+                },
               ),
             ),
 
@@ -49,8 +92,8 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: Wrap(
-                spacing: 0.1, // Jarak antar chip
-                runSpacing: 4.0, // Jarak antar baris
+                spacing: 0.1,
+                runSpacing: 4.0,
                 children: const [
                   FilterChipWidget(label: 'All', backgroundColor: Color(0xFFB2DFDB)),
                   FilterChipWidget(label: 'Romance', backgroundColor: Color(0xFFF8BBD0)),
@@ -86,6 +129,27 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+// SlideshowImage Widget
+class SlideshowImage extends StatelessWidget {
+  final String imagePath;
+
+  const SlideshowImage({super.key, required this.imagePath});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        image: DecorationImage(
+          image: AssetImage(imagePath),
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+}
+
 // FilterChipWidget Class
 class FilterChipWidget extends StatelessWidget {
   final String label;
@@ -102,13 +166,13 @@ class FilterChipWidget extends StatelessWidget {
     return ChoiceChip(
       label: Text(
         label,
-        style: const TextStyle(color: Colors.black), // Teks berwarna hitam
+        style: const TextStyle(color: Colors.black),
       ),
       selected: false,
       backgroundColor: backgroundColor,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20), // Membuat border lonjong/bulat
-        side: BorderSide(color: Colors.grey.shade300), // Menambahkan warna border abu-abu
+        borderRadius: BorderRadius.circular(20),
+        side: BorderSide(color: Colors.grey.shade300),
       ),
       onSelected: (selected) {},
     );
@@ -142,7 +206,7 @@ class SectionTitle extends StatelessWidget {
 
 // BookGrid Class
 class BookGrid extends StatelessWidget {
-  final List<Map<String, String>> books; // Updated to accept both title and image URL/Asset
+  final List<Map<String, String>> books;
 
   const BookGrid({super.key, required this.books});
 

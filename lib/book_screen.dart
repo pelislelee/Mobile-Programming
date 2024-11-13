@@ -2,31 +2,33 @@ import 'package:flutter/material.dart';
 import 'genre_tag.dart';
 
 class BookScreen extends StatelessWidget {
+  const BookScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        backgroundColor: Color(0xFFF6B047),
+        backgroundColor: const Color(0xFFF6B047),
         elevation: 0,
-        title: Text('Hi user!',
+        title: const Text('Hi user!',
         style: TextStyle(color: Colors.white, fontSize: 16),
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.search, color: Colors.white,),
+            icon: const Icon(Icons.search, color: Colors.white,),
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(Icons.person, color: Colors.white),
+            icon: const Icon(Icons.person, color: Colors.white),
             onPressed: () {},
           ),
         ],
       ),
       body: Center(
         child: Container(
-          padding: EdgeInsets.all(16.0),
-          margin: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
+          margin: const EdgeInsets.all(16.0),
           decoration: BoxDecoration(
             color: Colors.pink[100],
             borderRadius: BorderRadius.circular(16),
@@ -42,13 +44,13 @@ class BookScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              SizedBox(height: 16),
-              Text(
+              const SizedBox(height: 16),
+              const Text(
                 'Yellow Hearts',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
               ),
-              SizedBox(height: 8),
-              Row(
+              const SizedBox(height: 8),
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   GenreTag(genre: 'Romance'),
@@ -56,8 +58,8 @@ class BookScreen extends StatelessWidget {
                   GenreTag(genre: 'Comedy'),
                 ],
               ),
-              SizedBox(height: 16),
-              Text(
+              const SizedBox(height: 16),
+              const Text(
                 'In a bright Monday morning.....',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 14, color: Colors.white, fontFamily: 'Cursive'),
