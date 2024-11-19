@@ -106,20 +106,34 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
             // Section Title and Book Grid
-            const SectionTitle(title: 'Continue Reading'),
+            const SectionTitle(title: 'Young Adult Romance'),
             const BookGrid(
               books: [
-                {'title': 'Harry Potter', 'image': 'assets/hp_cover.jpg'},
-                {'title': 'Jurassic Park', 'image': 'assets/jp_cover.jpg'},
-                {'title': 'The Seven Husbands of Evelyn Hugo', 'image': 'assets/evelyn_hugo_cover.jpg'},
+                {'title': 'The Fault \n in Our Stars', 'image': 'lib/images/bookcovers/thefaultinourstars.jpg'},
+                {'title': 'Eleanor & Park', 'image': 'lib/images/bookcovers/eleanorandpark.jpeg'},
+                {'title': 'Five Feet Apart', 'image': 'lib/images/bookcovers/five-feet-apart-cover.jpg'},
+                {'title': 'Anna and \n the French Kiss', 'image': 'lib/images/bookcovers/annaandthefrenchkiss.jpeg'},
+                {'title': 'To All the Boys \n I’ve Loved Before', 'image': 'lib/images/bookcovers/toalltheboys.jpg'},
               ],
             ),
-            const SectionTitle(title: 'Popular'),
+            const SectionTitle(title: 'Fantasy Adventure'),
             const BookGrid(
               books: [
-                {'title': 'Nights in Sicily', 'image': 'assets/nights_in_sicily_cover.jpg'},
-                {'title': 'The King of Kings', 'image': 'assets/king_of_kings_cover.jpg'},
-                {'title': 'The Haunted', 'image': 'assets/the_haunted_cover.jpg'},
+                {'title': 'Percy Jackson \n & The Olympians: \n The Lightning Thief', 'image': 'lib/images/bookcovers/percyjackson.jpeg'},
+                {'title': 'Harry Potter and \n the Sorcerers Stone', 'image': 'lib/images/bookcovers/harrypotter.jpg'},
+                {'title': 'Six of Crows', 'image': 'lib/images/bookcovers/sixofcrows.jpg'},
+                {'title': 'The Maze Runner', 'image': 'assets/the_haunted_cover.jpg'},
+                {'title': 'The Hunger Games', 'image': 'lib/images/bookcovers/thehungergames.jpg'},
+              ],
+            ),
+            const SectionTitle(title: 'Coming of Age'),
+            const BookGrid(
+              books: [
+                {'title': 'The Perks \n of Being a Wallflower', 'image': 'lib/images/bookcovers/theperksofbeingawallflower.jpg'},
+                {'title': 'Looking for Alaska', 'image': 'lib/images/bookcovers/lookingforalaska.webp'},
+                {'title': 'Simon vs. \n the Homo Sapiens Agenda', 'image': 'lib/images/bookcovers/simonvs.jpg'},
+                {'title': 'Wonder', 'image': 'lib/images/bookcovers/wonder.webp'},
+                {'title': 'All the Bright Places', 'image': 'lib/images/bookcovers/allthebrightplaces.jpeg'},
               ],
             ),
           ],
@@ -214,38 +228,38 @@ class BookGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16),
-      child: GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: books.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          childAspectRatio: 2 / 3,
-        ),
-        itemBuilder: (context, index) {
-          return Column(
-            children: [
-              Container(
-                height: 100,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(books[index]['image']!),
-                    fit: BoxFit.cover,
+      child: SizedBox(
+        height: 220, // Tinggi container untuk memastikan layout tetap rapi
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal, // Mengatur agar dapat digeser horizontal
+          itemCount: books.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8), // Spasi antar item
+              child: Column(
+                children: [
+                  Container(
+                    height: 150,
+                    width: 100, // Menentukan lebar untuk item agar konsisten
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(books[index]['image']!),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                   ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
+                  const SizedBox(height: 4),
+                  Text(
+                    books[index]['title']!,
+                    style: TextStyle(fontSize: 14, color: Colors.orange[800]),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
-              const SizedBox(height: 4),
-              Text(
-                books[index]['title']!,
-                style: TextStyle(fontSize: 14, color: Colors.orange[800]),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
