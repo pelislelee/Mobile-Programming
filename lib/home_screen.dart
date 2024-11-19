@@ -92,10 +92,10 @@ class _HomeScreenState extends State<HomeScreen> {
             // Filter Chips Section
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16),
-              child: Wrap(
+              child: const Wrap(
                 spacing: 0.1,
                 runSpacing: 4.0,
-                children: const [
+                children: [
                   FilterChipWidget(label: 'All', backgroundColor: Color(0xFFB2DFDB)),
                   FilterChipWidget(label: 'Romance', backgroundColor: Color(0xFFF8BBD0)),
                   FilterChipWidget(label: 'Fantasy', backgroundColor: Color(0xFFE1BEE7)),
@@ -114,31 +114,31 @@ class _HomeScreenState extends State<HomeScreen> {
                   'title': 'The Fault \n in Our Stars', 
                   'image': 'lib/images/bookcovers/thefaultinourstars.jpg',
                   'description': 'blablabla',
-                  'genres': 'Romance',
+                  'genres': ['Romance',]
                 },
                 {
                   'title': 'Eleanor & Park', 
                   'image': 'lib/images/bookcovers/eleanorandpark.jpeg',
                   'description': 'blablabla',
-                  'genres': 'Romance'
+                  'genres': ['Romance']
                 },
                 {
                   'title': 'Five Feet Apart', 
                   'image': 'lib/images/bookcovers/five-feet-apart-cover.jpg',
                   'description': 'blablabla',
-                  'genres': 'Romance'
+                  'genres': ['Romance']
                 },
                 {
                   'title': 'Anna and \n the French Kiss', 
                   'image': 'lib/images/bookcovers/annaandthefrenchkiss.jpeg',
                   'description': 'blablabla',
-                  'genres': 'Romance'
+                  'genres': ['Romance']
                 },
                 {
                   'title': 'To All the Boys \n I’ve Loved Before', 
                   'image': 'lib/images/bookcovers/toalltheboys.jpg',
                   'description': 'blablabla',
-                  'genres': 'Romance'
+                  'genres': ['Romance']
                 },
               ],
             ),
@@ -149,31 +149,31 @@ class _HomeScreenState extends State<HomeScreen> {
                   'title': 'Percy Jackson \n & The Olympians: \n The Lightning Thief', 
                   'image': 'lib/images/bookcovers/percyjackson.jpeg',
                   'description': 'blablabla',
-                  'genres': 'Fantasy, Adventure'
+                  'genres': ['Fantasy', 'Adventure']
                 },
                 {
                   'title': 'Harry Potter and \n the Sorcerers Stone', 
                   'image': 'lib/images/bookcovers/harrypotter.jpg',
                   'description': 'blablabla',
-                  'genres': 'Fantasy, Adventure'
+                  'genres': ['Fantasy', 'Adventure']
                 },
                 {
                   'title': 'Six of Crows', 
                   'image': 'lib/images/bookcovers/sixofcrows.jpg',
                   'description': 'blablabla',
-                  'genres': 'Fantasy, Crime'
+                  'genres': ['Fantasy', 'Crime']
                 },
                 {
                   'title': 'The Maze Runner', 
                   'image': 'assets/the_haunted_cover.jpg',
                   'description': 'blablala',
-                  'genres': 'Sci-fi, Adventure'
+                  'genres': ['Sci-fi', 'Adventure']
                 },
                 {
                   'title': 'The Hunger Games', 
                   'image': 'lib/images/bookcovers/thehungergames.jpg',
                   'description': 'blablabla',
-                  'genres': 'Dystopian, Adventure'
+                  'genres': ['Dystopian', 'Adventure']
                 },
               ],
             ),
@@ -184,31 +184,31 @@ class _HomeScreenState extends State<HomeScreen> {
                   'title': 'The Perks \n of Being a Wallflower', 
                   'image': 'lib/images/bookcovers/theperksofbeingawallflower.jpg',
                   'description': 'blablabla',
-                  'genres': 'Sci-fi'
+                  'genres': ['Sci-fi']
                 },
                 {
                   'title': 'Looking for Alaska', 
                   'image': 'lib/images/bookcovers/lookingforalaska.webp',
                   'description': 'blalblbla',
-                  'genres': 'Sci-fi'
+                  'genres': ['Sci-fi']
                 },
                 {
                   'title': 'Simon vs. \n the Homo Sapiens Agenda', 
                   'image': 'lib/images/bookcovers/simonvs.jpg',
                   'description': 'blablabla',
-                  'genres': 'Sci-fi'
+                  'genres': ['Sci-fi']
                 },
                 {
                   'title': 'Wonder', 
                   'image': 'lib/images/bookcovers/wonder.webp',
                   'description': 'blablabla',
-                  'genres': 'Sci-fi'
+                  'genres': ['Sci-fi']
                 },
                 {
                   'title': 'All the Bright Places', 
                   'image': 'lib/images/bookcovers/allthebrightplaces.jpeg',
                   'description': 'blablalba',
-                  'genres': 'Scifi'
+                  'genres': ['Scifi']
                 },
               ],
             ),
@@ -316,12 +316,15 @@ class BookGrid extends StatelessWidget {
                 Navigator.push(
                   context, 
                   MaterialPageRoute(
-                    builder: (context) => BookScreen(
+                    builder: (context) {
+                      final genres = book['genres'];
+                      return BookScreen(
                       title: book['title']!,
                       imagePath: book['image']!,
                       description: book['description']!,
-                      genres: book['genres']!,
-                    ),
+                      genres: genres is List<String> ? genres : [genres.toString()],
+                    );
+                    },
                   ),
                 );
               },      
