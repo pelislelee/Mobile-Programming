@@ -313,20 +313,17 @@ class BookGrid extends StatelessWidget {
             final book = books[index];
             return GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context, 
-                  MaterialPageRoute(
-                    builder: (context) {
-                      final genres = book['genres'];
-                      return BookScreen(
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    builder: (context) => BookScreen(
                       title: book['title']!,
                       imagePath: book['image']!,
                       description: book['description']!,
-                      genres: genres is List<String> ? genres : [genres.toString()],
-                    );
-                    },
-                  ),
-                );
+                      genres: List<String>.from(book['genres']),
+                    ),
+                  );
               },      
               child: Column(
                 children: [

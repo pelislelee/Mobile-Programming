@@ -18,66 +18,82 @@ class BookScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFFF6B047),
-        title: Text(title),
-        ),
-        body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 200,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(imagePath),
-                    fit: BoxFit.cover,
+      backgroundColor: Colors.transparent,
+      body: Stack(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height / 2.5,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(imagePath),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.75,
+              decoration: BoxDecoration(
+                color: Colors.pink[100],
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(16),
+                  topRight: Radius.circular(16),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Text(
+                        title,
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                const SizedBox(height: 16),
+                    const SizedBox(height: 16),
 
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+                    Center(
+                      child: Wrap(
+                        spacing: 8,
+                        children: genres
+                        .map(
+                          (genre) => GenreTag(
+                          genre: genre,
+                          backgroundColor: Colors.orange,
+                          ),
+                      )
+                      .toList(),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 8),
+                  const SizedBox(height: 16),
 
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: genres
-                  .map((genre) => GenreTag(
-                    genre: genre,
-                  backgroundColor: Colors.orange[300]!,
-                  ))
-                  .toList(),
-                ),
-                const SizedBox(height: 16),
-
-                Text(
-                  'Description:',
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.orange,
+                  Expanded(child: SingleChildScrollView(
+                    child: Text(
+                      description,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.justify,
+                    ),
                   ),
+                  ),
+                  ],
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  description,
-                  style: const TextStyle(fontSize: 16),
-                  textAlign: TextAlign.justify,
-                )
-              ],
-            )),
-        ),
-      );
+              ),
+            ),
+          )
+        ],
+      )
+    );
   }
 }
