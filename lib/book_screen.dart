@@ -21,16 +21,6 @@ class BookScreen extends StatelessWidget {
       backgroundColor: Colors.transparent,
       body: Stack(
         children: [
-          Container(
-            height: MediaQuery.of(context).size.height / 2.5,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(imagePath),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -48,6 +38,8 @@ class BookScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(height: 80),
+
                     Center(
                       child: Text(
                         title,
@@ -89,6 +81,27 @@ class BookScreen extends StatelessWidget {
                   ),
                   ],
                 ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+              width: 120,
+              height: 160,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(imagePath),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.2),
+                      blurRadius: 8,
+                      offset: const Offset(0, 4),
+                    ),
+                ]
               ),
             ),
           )
