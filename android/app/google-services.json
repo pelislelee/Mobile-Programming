@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "510752503145",
+    "project_id": "uas-mobprog-f4393",
+    "storage_bucket": "uas-mobprog-f4393.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510752503145:android:3ba4621c346d45efb1f9f8",
+        "android_client_info": {
+          "package_name": "com.example.uas_mobprog"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG7CDCxNJuEsgw0cZX_skPSGA1MXWonys"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
