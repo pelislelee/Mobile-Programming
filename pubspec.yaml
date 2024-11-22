@@ -92,6 +92,7 @@ flutter:
     - lib/images/bookcovers/trulydevious.webp
     - lib/images/bookcovers/wewereliars.jpg
     - lib/images/bookcovers/wonder.webp
+    - lib/images/bookcovers/toalltheboys.jpg
     - lib/images/slides/slide1.jpeg
     - lib/images/slides/slide2.jpeg
     - lib/images/slides/slide3.jpeg

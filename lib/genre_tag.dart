@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 
 class GenreTag extends StatelessWidget {
   final String genre;
+  final Color backgroundColor;
 
-  const GenreTag({super.key, required this.genre});
+  const GenreTag({
+    super.key, 
+    required this.genre,
+    this.backgroundColor = const Color(0xFFF6B047),
+    });
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +21,12 @@ class GenreTag extends StatelessWidget {
       ),
       child: Text(
         genre,
-      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold,
-      ),
+        style: const TextStyle(
+          color: Colors.white, 
+          fontWeight: FontWeight.bold,
+          fontSize: 14,
+        ),
+        textAlign: TextAlign.center,
       ),
     );
   }

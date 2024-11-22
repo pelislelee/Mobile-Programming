@@ -2,72 +2,109 @@ import 'package:flutter/material.dart';
 import 'genre_tag.dart';
 
 class BookScreen extends StatelessWidget {
-  const BookScreen({super.key});
+  final String title;
+  final String imagePath;
+  final String description;
+  final List<String> genres;
+
+  const BookScreen({
+    super.key,
+    required this.title,
+    required this.imagePath,
+    required this.description,
+    required this.genres,
+    });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-        backgroundColor: const Color(0xFFF6B047),
-        elevation: 0,
-        title: const Text('Hi user!',
-        style: TextStyle(color: Colors.white, fontSize: 16),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search, color: Colors.white,),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.person, color: Colors.white),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: Center(
-        child: Container(
-          padding: const EdgeInsets.all(16.0),
-          margin: const EdgeInsets.all(16.0),
-          decoration: BoxDecoration(
-            color: Colors.pink[100],
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 100,
-                height: 120,
-                decoration: BoxDecoration(
-                  color: Colors.blue[300],
-                  borderRadius: BorderRadius.circular(8),
+      backgroundColor: Colors.transparent,
+      body: Stack(
+        children: [
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.75,
+              decoration: BoxDecoration(
+                color: Colors.pink[100],
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(16),
+                  topRight: Radius.circular(16),
                 ),
               ),
-              const SizedBox(height: 16),
-              const Text(
-                'Yellow Hearts',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+
+                    Center(
+                      child: Container(
+                        width: 120,
+                        height: 180,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(imagePath),
+                            fit: BoxFit.cover,
+                            ),
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                blurRadius: 8,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                        ),),),
+                        const SizedBox(height: 16),
+
+                    Center(
+                      child: Text(
+                        title,
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+
+                    Center(
+                      child: Wrap(
+                        spacing: 8,
+                        children: genres
+                        .map(
+                          (genre) => GenreTag(
+                          genre: genre,
+                          backgroundColor: Colors.orange,
+                          ),
+                      )
+                      .toList(),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+
+                  Expanded(child: SingleChildScrollView(
+                    child: Text(
+                      description,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.justify,
+                    ),
+                  ),
+                  ),
+                  ],
+                ),
               ),
-              const SizedBox(height: 8),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GenreTag(genre: 'Romance'),
-                  GenreTag(genre: 'High-School'),
-                  GenreTag(genre: 'Comedy'),
-                ],
-              ),
-              const SizedBox(height: 16),
-              const Text(
-                'In a bright Monday morning.....',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 14, color: Colors.white, fontFamily: 'Cursive'),
-              ),
-            ],
+            ),
           ),
-        ),
-      ),
+        ],
+      )
     );
   }
 }
