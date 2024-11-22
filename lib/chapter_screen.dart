@@ -7,16 +7,34 @@ class ChapterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFef3f1),
+      backgroundColor: const Color(0xFFFef3f1),
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: const Icon(Icons.wb_sunny_outlined, color: Colors.orange),
-        actions: const [
-          Icon(Icons.format_size, color: Colors.red),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Icon(Icons.edit, color: Colors.pink),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.orange),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.wb_sunny_outlined, color: Colors.orange),
+            onPressed: () {
+              // TODO: Tambahkan logika Light/Dark Mode
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.format_size, color: Colors.red),
+            onPressed: () {
+              // TODO: Tambahkan logika untuk mengubah ukuran teks
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.edit, color: Colors.pink),
+            onPressed: () {
+              // TODO: Tambahkan logika untuk mengedit teks
+            },
           ),
         ],
       ),
@@ -27,7 +45,7 @@ class ChapterScreen extends StatelessWidget {
           children: [
             const Center(
               child: Text(
-                'Chapter 1',
+                'Chapter 1: Introduction',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -39,13 +57,25 @@ class ChapterScreen extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
+                  color: Colors.white,
                   border: Border.all(color: Colors.purple, width: 2),
                   borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 8,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
                 ),
                 child: SingleChildScrollView(
                   child: Text(
-                    loremIpsum(paragraphs: 3, words: 150),  // Generates 3 paragraphs with 150 words
-                    style: const TextStyle(fontSize: 16, height: 1.5),
+                    loremIpsum(paragraphs: 3, words: 150), // Placeholder teks
+                    style: const TextStyle(
+                      fontSize: 16,
+                      height: 1.8,
+                      color: Colors.black87,
+                    ),
                   ),
                 ),
               ),
