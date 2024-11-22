@@ -89,12 +89,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
             // Filter Chips Section
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 16),
               child: Wrap(
                 spacing: 0.1,
                 runSpacing: 4.0,
-                children: const [
+                children: [
                   FilterChipWidget(label: 'All', backgroundColor: Color(0xFFB2DFDB)),
                   FilterChipWidget(label: 'Romance', backgroundColor: Color(0xFFF8BBD0)),
                   FilterChipWidget(label: 'Fantasy', backgroundColor: Color(0xFFE1BEE7)),
