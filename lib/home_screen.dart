@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'book_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -106,20 +107,109 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
             // Section Title and Book Grid
-            const SectionTitle(title: 'Continue Reading'),
+            const SectionTitle(title: 'Young Adult Romance'),
             const BookGrid(
               books: [
-                {'title': 'Harry Potter', 'image': 'assets/hp_cover.jpg'},
-                {'title': 'Jurassic Park', 'image': 'assets/jp_cover.jpg'},
-                {'title': 'The Seven Husbands of Evelyn Hugo', 'image': 'assets/evelyn_hugo_cover.jpg'},
+                {
+                  'title': 'The Fault \n in Our Stars', 
+                  'image': 'lib/images/bookcovers/thefaultinourstars.jpg',
+                  'description': 'blablabla',
+                  'genres': ['Romance',]
+                },
+                {
+                  'title': 'Eleanor & Park', 
+                  'image': 'lib/images/bookcovers/eleanorandpark.jpeg',
+                  'description': 'blablabla',
+                  'genres': ['Romance']
+                },
+                {
+                  'title': 'Five Feet Apart', 
+                  'image': 'lib/images/bookcovers/five-feet-apart-cover.jpg',
+                  'description': 'blablabla',
+                  'genres': ['Romance']
+                },
+                {
+                  'title': 'Anna and \n the French Kiss', 
+                  'image': 'lib/images/bookcovers/annaandthefrenchkiss.jpeg',
+                  'description': 'blablabla',
+                  'genres': ['Romance']
+                },
+                {
+                  'title': 'To All the Boys \n I’ve Loved Before', 
+                  'image': 'lib/images/bookcovers/toalltheboys.jpg',
+                  'description': 'blablabla',
+                  'genres': ['Romance']
+                },
               ],
             ),
-            const SectionTitle(title: 'Popular'),
+            const SectionTitle(title: 'Fantasy Adventure'),
             const BookGrid(
               books: [
-                {'title': 'Nights in Sicily', 'image': 'assets/nights_in_sicily_cover.jpg'},
-                {'title': 'The King of Kings', 'image': 'assets/king_of_kings_cover.jpg'},
-                {'title': 'The Haunted', 'image': 'assets/the_haunted_cover.jpg'},
+                {
+                  'title': 'Percy Jackson \n & The Olympians: \n The Lightning Thief', 
+                  'image': 'lib/images/bookcovers/percyjackson.jpeg',
+                  'description': 'blablabla',
+                  'genres': ['Fantasy', 'Adventure']
+                },
+                {
+                  'title': 'Harry Potter and \n the Sorcerers Stone', 
+                  'image': 'lib/images/bookcovers/harrypotter.jpg',
+                  'description': 'blablabla',
+                  'genres': ['Fantasy', 'Adventure']
+                },
+                {
+                  'title': 'Six of Crows', 
+                  'image': 'lib/images/bookcovers/sixofcrows.jpg',
+                  'description': 'blablabla',
+                  'genres': ['Fantasy', 'Crime']
+                },
+                {
+                  'title': 'The Maze Runner', 
+                  'image': 'assets/the_haunted_cover.jpg',
+                  'description': 'blablala',
+                  'genres': ['Sci-fi', 'Adventure']
+                },
+                {
+                  'title': 'The Hunger Games', 
+                  'image': 'lib/images/bookcovers/thehungergames.jpg',
+                  'description': 'blablabla',
+                  'genres': ['Dystopian', 'Adventure']
+                },
+              ],
+            ),
+            const SectionTitle(title: 'Coming of Age'),
+            const BookGrid(
+              books: [
+                {
+                  'title': 'The Perks \n of Being a Wallflower', 
+                  'image': 'lib/images/bookcovers/theperksofbeingawallflower.jpg',
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
+                },
+                {
+                  'title': 'Looking for Alaska', 
+                  'image': 'lib/images/bookcovers/lookingforalaska.webp',
+                  'description': 'blalblbla',
+                  'genres': ['Sci-fi']
+                },
+                {
+                  'title': 'Simon vs. \n the Homo Sapiens Agenda', 
+                  'image': 'lib/images/bookcovers/simonvs.jpg',
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
+                },
+                {
+                  'title': 'Wonder', 
+                  'image': 'lib/images/bookcovers/wonder.webp',
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
+                },
+                {
+                  'title': 'All the Bright Places', 
+                  'image': 'lib/images/bookcovers/allthebrightplaces.jpeg',
+                  'description': 'blablalba',
+                  'genres': ['Scifi']
+                },
               ],
             ),
           ],
@@ -206,7 +296,7 @@ class SectionTitle extends StatelessWidget {
 
 // BookGrid Class
 class BookGrid extends StatelessWidget {
-  final List<Map<String, String>> books;
+  final List<Map<String, dynamic>> books;
 
   const BookGrid({super.key, required this.books});
 
@@ -214,38 +304,51 @@ class BookGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16),
-      child: GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: books.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          childAspectRatio: 2 / 3,
-        ),
-        itemBuilder: (context, index) {
-          return Column(
-            children: [
-              Container(
-                height: 100,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(books[index]['image']!),
-                    fit: BoxFit.cover,
+      child: SizedBox(
+        height: 220, // Tinggi container untuk memastikan layout tetap rapi
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal, // Mengatur agar dapat digeser horizontal
+          itemCount: books.length,
+          itemBuilder: (context, index) {
+            final book = books[index];
+            return GestureDetector(
+              onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    builder: (context) => BookScreen(
+                      title: book['title']!,
+                      imagePath: book['image']!,
+                      description: book['description']!,
+                      genres: List<String>.from(book['genres']),
+                    ),
+                  );
+              },      
+              child: Column(
+                children: [
+                  Container(
+                    height: 150,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(book['image']!),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                   ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
+                  const SizedBox(height: 4),
+                  Text(
+                    book['title']!,
+                    style: const TextStyle(fontSize: 14, color: Colors.orange),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
-              const SizedBox(height: 4),
-              Text(
-                books[index]['title']!,
-                style: TextStyle(fontSize: 14, color: Colors.orange[800]),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
