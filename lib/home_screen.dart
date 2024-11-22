@@ -177,6 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ],
             ),
+
             const SectionTitle(title: 'Coming of Age'),
             const BookGrid(
               books: [
@@ -188,6 +189,42 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 {
                   'title': 'Looking for Alaska', 
+                  'image': 'lib/images/bookcovers/lookingforalaska.webp',
+                  'description': 'blalblbla',
+                  'genres': ['Sci-fi']
+                },
+                {
+                  'title': 'Simon vs. \n the Homo Sapiens Agenda', 
+                  'image': 'lib/images/bookcovers/simonvs.jpg',
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
+                },
+                {
+                  'title': 'Wonder', 
+                  'image': 'lib/images/bookcovers/wonder.webp',
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
+                },
+                {
+                  'title': 'All the Bright Places', 
+                  'image': 'lib/images/bookcovers/allthebrightplaces.jpeg',
+                  'description': 'blablalba',
+                  'genres': ['Scifi']
+                },
+              ],
+            ),
+
+            const SectionTitle(title: 'Mystery & Thriller'),
+            const BookGrid(
+              books: [
+                {
+                  'title': 'One of Us Is Lying', 
+                  'image': 'lib/images/bookcovers/theperksofbeingawallflower.jpg',
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
+                },
+                {
+                  'title': 'A Good Girls Guide to Murder', 
                   'image': 'lib/images/bookcovers/lookingforalaska.webp',
                   'description': 'blalblbla',
                   'genres': ['Sci-fi']
