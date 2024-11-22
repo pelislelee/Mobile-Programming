@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'genre_tag.dart';
+import 'chapter_screen.dart';
 
 class BookScreen extends StatelessWidget {
   final String title;
@@ -97,10 +98,37 @@ class BookScreen extends StatelessWidget {
                       textAlign: TextAlign.justify,
                     ),
                   ),
-                  ),
-                  ],
                 ),
-              ),
+                const SizedBox(height: 16),
+                // tombol untuk membuka chapterscreen
+                Center(
+                  child: ElevatedButton(
+                    onPressed: (){
+                      //navigasi ke chapter screen
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ChapterScreen(),
+                          ),
+                        );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orange, 
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 12),
+                      ),
+                      child: const Text(
+                        'Read Chapters',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                         ),
+                        ),
+                      ), 
+                ),
+               ],
+             ),
+            ),
             ),
           ),
         ],

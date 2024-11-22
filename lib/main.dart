@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
+import 'theme_provider.dart';
+import 'text_size_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => TextSizeProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -13,10 +24,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+       theme: ThemeData.light(), // Tema terang bawaan
+       darkTheme: ThemeData.dark(), // Tema gelap bawaan
+       themeMode: Provider.of<ThemeProvider>(context).isDarkMode
+          ? ThemeMode.dark
+          : ThemeMode.light,
       home: const WelcomePage(),
     );
   }
