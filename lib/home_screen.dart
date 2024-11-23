@@ -304,7 +304,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 {
                   'title': 'Paper Towns', 
                   'image': 'lib/images/bookcovers/papertowns.jpg',
-                  'description': 'blalblbla',
+                  'description': 'blalblblablaa',
                   'genres': ['Sci-fi']
                 },
                 {
