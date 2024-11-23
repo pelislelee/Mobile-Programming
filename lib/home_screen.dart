@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:uas_mobprog/login.dart';
 import 'book_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -69,7 +70,12 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           IconButton(
             icon: const Icon(Icons.person, color: Color(0xFFFef3f1)),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LoginPage()),
+              );
+            },
           ),
         ],
       ),
@@ -90,9 +96,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
             // Filter Chips Section
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: const Wrap(
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 16),
+              child: Wrap(
                 spacing: 0.1,
                 runSpacing: 4.0,
                 children: [
