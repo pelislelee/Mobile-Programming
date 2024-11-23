@@ -230,7 +230,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   'genres': ['Sci-fi']
                 },
                 {
-                  'title': 'A Good Girls Guide to Murder', 
+                  'title': 'A Good Girls \n Guide to Murder', 
                   'image': 'lib/images/bookcovers/agoodgirlsguide.jpeg',
                   'description': 'blalblbla',
                   'genres': ['Sci-fi']
@@ -248,7 +248,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   'genres': ['Sci-fi']
                 },
                 {
-                  'title': 'The Inheritance Games', 
+                  'title': 'The Inheritance \n Games', 
                   'image': 'lib/images/bookcovers/theinheritancegames.jpg',
                   'description': 'blablalba',
                   'genres': ['Scifi']
@@ -260,31 +260,31 @@ class _HomeScreenState extends State<HomeScreen> {
             const BookGrid(
               books: [
                 {
-                  'title': 'Divergent', 
+                  'title': ' Divergent ', 
                   'image': 'lib/images/bookcovers/divergent.jpeg',
                   'description': 'blablabla',
                   'genres': ['Sci-fi']
                 },
                 {
-                  'title': 'The Giver', 
+                  'title': ' The Giver ', 
                   'image': 'lib/images/bookcovers/thegiver.avif',
                   'description': 'blalblbla',
                   'genres': ['Sci-fi']
                 },
                 {
-                  'title': 'Legend', 
+                  'title': ' Legend ', 
                   'image': 'lib/images/bookcovers/legend.jpeg',
                   'description': 'blablabla',
                   'genres': ['Sci-fi']
                 },
                 {
-                  'title': 'Red Queen', 
+                  'title': ' Red Queen ', 
                   'image': 'lib/images/bookcovers/redqueen.jpg',
                   'description': 'blablabla',
                   'genres': ['Sci-fi']
                 },
                 {
-                  'title': 'Scythe', 
+                  'title': ' Scythe ', 
                   'image': 'lib/images/bookcovers/scythe.jpg',
                   'description': 'blablalba',
                   'genres': ['Scifi']
@@ -296,7 +296,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const BookGrid(
               books: [
                 {
-                  'title': 'I’ll Give You the Sun', 
+                  'title': 'I’ll Give You \n the Sun', 
                   'image': 'lib/images/bookcovers/illgiveyouthesun.jpg',
                   'description': 'blablabla',
                   'genres': ['Sci-fi']
