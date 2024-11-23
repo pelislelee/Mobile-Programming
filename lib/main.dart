@@ -25,10 +25,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
        theme: ThemeData.light(), // Tema terang bawaan
-       darkTheme: ThemeData.dark(), // Tema gelap bawaan
-       themeMode: Provider.of<ThemeProvider>(context).isDarkMode
-          ? ThemeMode.dark
-          : ThemeMode.light,
       home: const WelcomePage(),
     );
   }
