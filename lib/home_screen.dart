@@ -255,6 +255,78 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ],
             ),
+
+            const SectionTitle(title: 'Science Fiction & Dystopian'),
+            const BookGrid(
+              books: [
+                {
+                  'title': 'Divergent', 
+                  'image': 'lib/images/bookcovers/divergent.jpeg',
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
+                },
+                {
+                  'title': 'The Giver', 
+                  'image': 'lib/images/bookcovers/thegiver.avif',
+                  'description': 'blalblbla',
+                  'genres': ['Sci-fi']
+                },
+                {
+                  'title': 'Legend', 
+                  'image': 'lib/images/bookcovers/legend.jpeg',
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
+                },
+                {
+                  'title': 'Red Queen', 
+                  'image': 'lib/images/bookcovers/redqueen.jpg',
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
+                },
+                {
+                  'title': 'Scythe', 
+                  'image': 'lib/images/bookcovers/scythe.jpg',
+                  'description': 'blablalba',
+                  'genres': ['Scifi']
+                },
+              ],
+            ),
+
+            const SectionTitle(title: 'Friendship & Life Lessons'),
+            const BookGrid(
+              books: [
+                {
+                  'title': 'I’ll Give You the Sun', 
+                  'image': 'lib/images/bookcovers/illgiveyouthesun.jpg',
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
+                },
+                {
+                  'title': 'Paper Towns', 
+                  'image': 'lib/images/bookcovers/papertowns.jpg',
+                  'description': 'blalblbla',
+                  'genres': ['Sci-fi']
+                },
+                {
+                  'title': 'The Sisterhood of \n the Traveling Pants', 
+                  'image': 'lib/images/bookcovers/thesisterhood.jpg',
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
+                },
+                {
+                  'title': 'If I Stay', 
+                  'image': 'lib/images/bookcovers/ifistay.png',
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
+                },
+                {
+                  'title': 'The Outsiders', 
+                  'image': 'lib/images/bookcovers/theoutsiders.jpg',
+                  'description': 'blablalba',
+                  'genres': ['Scifi']
+                },
+              ],
+            ),
           ],
         ),
       ),
