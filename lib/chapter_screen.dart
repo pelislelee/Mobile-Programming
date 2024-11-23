@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:lorem_ipsum/lorem_ipsum.dart';
-import 'theme_provider.dart'; // Pastikan mengimpor ThemeProvider
-import 'text_size_provider.dart'; // Pastikan mengimpor TextSizeProvider
+import 'theme_provider.dart'; // impor ThemeProvider
+import 'text_size_provider.dart'; // impor TextSizeProvider
 
 class ChapterScreen extends StatelessWidget {
   const ChapterScreen({super.key});
@@ -29,17 +29,31 @@ class ChapterScreen extends StatelessWidget {
             actions: [
               IconButton(
                 icon: Icon(
-                  Icons.wb_sunny_outlined,
-                  color: themeProvider.isDarkMode ? Colors.yellow : Colors.orange,
+                  themeProvider.isDarkMode
+                      ? Icons.dark_mode
+                      : Icons.light_mode,
+                  color: themeProvider.isDarkMode
+                      ? Colors.yellow
+                      : Colors.orange,
                 ),
                 onPressed: () {
                   themeProvider.toogleTheme(); // Toggle dark/light mode
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        themeProvider.isDarkMode
+                            ? 'Switched to Dark Mode'
+                            : 'Switched to Light Mode',
+                      ),
+                      duration: const Duration(seconds: 1),
+                    ),
+                  );
                 },
               ),
               IconButton(
                 icon: const Icon(Icons.format_size, color: Colors.red),
                 onPressed: () {
-                  // Tambahkan logika untuk mengubah ukuran teks
+                  //logika untuk mengubah ukuran teks
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
@@ -47,19 +61,38 @@ class ChapterScreen extends StatelessWidget {
                       content: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          IconButton(
-                            icon: const Icon(Icons.zoom_in),
-                            onPressed: () {
-                              textSizeProvider.increaseTextSize();
-                              Navigator.pop(context);
-                            },
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.zoom_out),
+                                onPressed: () {
+                                  textSizeProvider.decreaseTextSize();
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Text size decreased'),
+                                      duration: Duration(seconds: 1),
+                                    ),
+                                  );
+                                },
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.zoom_in),
+                                onPressed: () {
+                                  textSizeProvider.increaseTextSize();
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Text size increased'),
+                                      duration: Duration(seconds: 1),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
                           ),
-                          IconButton(
-                            icon: const Icon(Icons.zoom_out),
-                            onPressed: () {
-                              textSizeProvider.decreaseTextSize();
-                              Navigator.pop(context);
-                            },
+                          const SizedBox(height: 10),
+                          Text(
+                            'Current Size: ${textSizeProvider.textSize.toStringAsFixed(1)}',
                           ),
                         ],
                       ),
