@@ -225,31 +225,31 @@ class _HomeScreenState extends State<HomeScreen> {
               books: [
                 {
                   'title': 'One of Us Is Lying', 
-                  'image': 'lib/images/bookcovers/theperksofbeingawallflower.jpg',
+                  'image': 'lib/images/bookcovers/oneofusislying.jpg',
                   'description': 'blablabla',
                   'genres': ['Sci-fi']
                 },
                 {
                   'title': 'A Good Girls Guide to Murder', 
-                  'image': 'lib/images/bookcovers/lookingforalaska.webp',
+                  'image': 'lib/images/bookcovers/agoodgirlsguide.jpeg',
                   'description': 'blalblbla',
                   'genres': ['Sci-fi']
                 },
                 {
-                  'title': 'Simon vs. \n the Homo Sapiens Agenda', 
-                  'image': 'lib/images/bookcovers/simonvs.jpg',
+                  'title': 'We Were Liars', 
+                  'image': 'lib/images/bookcovers/wewereliars.jpg',
                   'description': 'blablabla',
                   'genres': ['Sci-fi']
                 },
                 {
-                  'title': 'Wonder', 
-                  'image': 'lib/images/bookcovers/wonder.webp',
+                  'title': 'Truly Devious', 
+                  'image': 'lib/images/bookcovers/trulydevious.webp',
                   'description': 'blablabla',
                   'genres': ['Sci-fi']
                 },
                 {
-                  'title': 'All the Bright Places', 
-                  'image': 'lib/images/bookcovers/allthebrightplaces.jpeg',
+                  'title': 'The Inheritance Games', 
+                  'image': 'lib/images/bookcovers/theinheritancegames.jpg',
                   'description': 'blablalba',
                   'genres': ['Scifi']
                 },
