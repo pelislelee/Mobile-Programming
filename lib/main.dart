@@ -4,6 +4,7 @@ import 'theme_provider.dart';
 import 'text_size_provider.dart';
 import 'package:provider/provider.dart';
 
+
 void main() {
   runApp(
     MultiProvider(
