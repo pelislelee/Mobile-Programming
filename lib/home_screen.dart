@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:uas_mobprog/login.dart';
 import 'book_screen.dart';
+import 'search_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -66,7 +67,12 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.search, color: Colors.white),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SearchScreen()),
+              );
+            },
           ),
           IconButton(
             icon: const Icon(Icons.person, color: Color(0xFFFef3f1)),
@@ -119,31 +125,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 {
                   'title': 'The Fault \n in Our Stars', 
                   'image': 'lib/images/bookcovers/thefaultinourstars.jpg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                  'description': 'blablabla',
                   'genres': ['Romance',]
                 },
                 {
                   'title': 'Eleanor & Park', 
                   'image': 'lib/images/bookcovers/eleanorandpark.jpeg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                  'description': 'blablabla',
                   'genres': ['Romance']
                 },
                 {
                   'title': 'Five Feet Apart', 
                   'image': 'lib/images/bookcovers/five-feet-apart-cover.jpg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                  'description': 'blablabla',
                   'genres': ['Romance']
                 },
                 {
                   'title': 'Anna and \n the French Kiss', 
                   'image': 'lib/images/bookcovers/annaandthefrenchkiss.jpeg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                  'description': 'blablabla',
                   'genres': ['Romance']
                 },
                 {
                   'title': 'To All the Boys \n I’ve Loved Before', 
                   'image': 'lib/images/bookcovers/toalltheboys.jpg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                  'description': 'blablabla',
                   'genres': ['Romance']
                 },
               ],
@@ -154,31 +160,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 {
                   'title': 'Percy Jackson \n & The Olympians: \n The Lightning Thief', 
                   'image': 'lib/images/bookcovers/percyjackson.jpeg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                  'description': 'blablabla',
                   'genres': ['Fantasy', 'Adventure']
                 },
                 {
                   'title': 'Harry Potter and \n the Sorcerers Stone', 
                   'image': 'lib/images/bookcovers/harrypotter.jpg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                  'description': 'blablabla',
                   'genres': ['Fantasy', 'Adventure']
                 },
                 {
                   'title': 'Six of Crows', 
                   'image': 'lib/images/bookcovers/sixofcrows.jpg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                  'description': 'blablabla',
                   'genres': ['Fantasy', 'Crime']
                 },
                 {
                   'title': 'The Maze Runner', 
                   'image': 'assets/the_haunted_cover.jpg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                  'description': 'blablala',
                   'genres': ['Sci-fi', 'Adventure']
                 },
                 {
                   'title': 'The Hunger Games', 
                   'image': 'lib/images/bookcovers/thehungergames.jpg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                  'description': 'blablabla',
                   'genres': ['Dystopian', 'Adventure']
                 },
               ],
@@ -190,32 +196,32 @@ class _HomeScreenState extends State<HomeScreen> {
                 {
                   'title': 'The Perks \n of Being a Wallflower', 
                   'image': 'lib/images/bookcovers/theperksofbeingawallflower.jpg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                  'genres': ['Romance', 'Comedy']
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
                 },
                 {
                   'title': 'Looking for Alaska', 
                   'image': 'lib/images/bookcovers/lookingforalaska.webp',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                  'genres': ['Young Adult', 'Fiction', 'Romance']
+                  'description': 'blalblbla',
+                  'genres': ['Sci-fi']
                 },
                 {
                   'title': 'Simon vs. \n the Homo Sapiens Agenda', 
                   'image': 'lib/images/bookcovers/simonvs.jpg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                  'genres': ['Young Adult', 'Romance', 'Drama']
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
                 },
                 {
                   'title': 'Wonder', 
                   'image': 'lib/images/bookcovers/wonder.webp',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                  'genres': ['Childrens literature']
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
                 },
                 {
                   'title': 'All the Bright Places', 
                   'image': 'lib/images/bookcovers/allthebrightplaces.jpeg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                  'genres': ['Romance', 'Drama', 'Teen', 'Melodrama']
+                  'description': 'blablalba',
+                  'genres': ['Scifi']
                 },
               ],
             ),
@@ -226,32 +232,32 @@ class _HomeScreenState extends State<HomeScreen> {
                 {
                   'title': 'One of Us Is Lying', 
                   'image': 'lib/images/bookcovers/oneofusislying.jpg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                  'genres': ['Mystery', 'Young adult literature']
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
                 },
                 {
                   'title': 'A Good Girls \n Guide to Murder', 
                   'image': 'lib/images/bookcovers/agoodgirlsguide.jpeg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                  'genres': ['Mystery', 'Thriller', 'Horror', 'Drama']
+                  'description': 'blalblbla',
+                  'genres': ['Sci-fi']
                 },
                 {
                   'title': 'We Were Liars', 
                   'image': 'lib/images/bookcovers/wewereliars.jpg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                  'genres': ['Thriller', 'Young adult literature']
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
                 },
                 {
                   'title': 'Truly Devious', 
                   'image': 'lib/images/bookcovers/trulydevious.webp',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                  'genres': ['Mystery', 'Fiction']
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
                 },
                 {
                   'title': 'The Inheritance \n Games', 
                   'image': 'lib/images/bookcovers/theinheritancegames.jpg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                  'genres': ['Mystery', 'Fiction']
+                  'description': 'blablalba',
+                  'genres': ['Scifi']
                 },
               ],
             ),
@@ -262,32 +268,32 @@ class _HomeScreenState extends State<HomeScreen> {
                 {
                   'title': ' Divergent ', 
                   'image': 'lib/images/bookcovers/divergent.jpeg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                  'description': 'blablabla',
                   'genres': ['Sci-fi']
                 },
                 {
                   'title': ' The Giver ', 
                   'image': 'lib/images/bookcovers/thegiver.avif',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                  'genres': ['Sci-fi', 'Action', 'Drama', 'Adventure']
+                  'description': 'blalblbla',
+                  'genres': ['Sci-fi']
                 },
                 {
                   'title': ' Legend ', 
                   'image': 'lib/images/bookcovers/legend.jpeg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                  'genres': ['Sci-fi', 'Dystopian', 'Young adult literature']
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
                 },
                 {
                   'title': ' Red Queen ', 
                   'image': 'lib/images/bookcovers/redqueen.jpg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.a',
-                  'genres': ['Sci-fi', 'Fantasy']
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
                 },
                 {
                   'title': ' Scythe ', 
                   'image': 'lib/images/bookcovers/scythe.jpg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                  'genres': ['Scifi', 'Adventure', 'Dystopian']
+                  'description': 'blablalba',
+                  'genres': ['Scifi']
                 },
               ],
             ),
@@ -298,32 +304,32 @@ class _HomeScreenState extends State<HomeScreen> {
                 {
                   'title': 'I’ll Give You \n the Sun', 
                   'image': 'lib/images/bookcovers/illgiveyouthesun.jpg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                  'genres': ['Young adult', 'Romance']
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
                 },
                 {
                   'title': 'Paper Towns', 
                   'image': 'lib/images/bookcovers/papertowns.jpg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                  'genres': ['Romance', 'Comedy', 'Melodrama', 'Adventure']
+                  'description': 'blalblbla',
+                  'genres': ['Sci-fi']
                 },
                 {
                   'title': 'The Sisterhood of \n the Traveling Pants', 
                   'image': 'lib/images/bookcovers/thesisterhood.jpg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                  'genres': ['Comedy', 'Romance', 'Melodrama']
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
                 },
                 {
                   'title': 'If I Stay', 
                   'image': 'lib/images/bookcovers/ifistay.png',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                  'genres': ['Drama', 'Fantasy', 'Music', 'Romance']
+                  'description': 'blablabla',
+                  'genres': ['Sci-fi']
                 },
                 {
                   'title': 'The Outsiders', 
                   'image': 'lib/images/bookcovers/theoutsiders.jpg',
-                  'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                  'genres': ['Young adult literature', 'Drama']
+                  'description': 'blablalba',
+                  'genres': ['Scifi']
                 },
               ],
             ),
