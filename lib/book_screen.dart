@@ -26,9 +26,9 @@ class BookScreen extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: Container(
               height: MediaQuery.of(context).size.height * 0.75,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color(0xFFFEF3F1),
-                borderRadius: const BorderRadius.only(
+                borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(16),
                   topRight: Radius.circular(16),
                 ),
@@ -80,7 +80,7 @@ class BookScreen extends StatelessWidget {
                         .map(
                           (genre) => GenreTag(
                           genre: genre,
-                          backgroundColor: Color(0xFFF1B8AC),
+                          backgroundColor: const Color(0xFFF1B8AC),
                           ),
                       )
                       .toList(),
@@ -113,7 +113,7 @@ class BookScreen extends StatelessWidget {
                         );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFF1B8AC), 
+                      backgroundColor: const Color(0xFFF1B8AC), 
                       padding: const EdgeInsets.symmetric(
                         horizontal: 24, vertical: 12),
                       ),

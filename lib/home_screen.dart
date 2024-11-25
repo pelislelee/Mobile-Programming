@@ -273,7 +273,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 {
                   'title': ' The Giver ', 
-                  'image': 'lib/images/bookcovers/thegiver.avif',
+                  'image': 'lib/images/bookcovers/thegiver.png',
                   'description': 'blalblbla',
                   'genres': ['Sci-fi']
                 },

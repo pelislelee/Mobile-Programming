@@ -148,7 +148,7 @@ class _SearchScreenState extends State<SearchScreen> {
     },
     {
       'title': 'The Giver',
-      'image': 'lib/images/bookcovers/thegiver.avif',
+      'image': 'lib/images/bookcovers/thegiver.png',
       'description': 'blablabla',
       'genres': 'Sci-fi',
     },
@@ -205,7 +205,7 @@ class _SearchScreenState extends State<SearchScreen> {
   ];
 
   List<Map<String, String>> filteredBooks = []; // Daftar buku yang sudah difilter
-  TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
