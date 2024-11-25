@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:uas_mobprog/login.dart';
 import 'book_screen.dart';
+import 'search_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -66,7 +67,12 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.search, color: Colors.white),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SearchScreen()),
+              );
+            },
           ),
           IconButton(
             icon: const Icon(Icons.person, color: Color(0xFFFef3f1)),
@@ -267,7 +273,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 {
                   'title': ' The Giver ', 
-                  'image': 'lib/images/bookcovers/thegiver.avif',
+                  'image': 'lib/images/bookcovers/thegiver.png',
                   'description': 'blalblbla',
                   'genres': ['Sci-fi']
                 },
