@@ -177,13 +177,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   'genres': ['Fantasy', 'Crime']
                 },
                 {
-                  'title': 'The Maze Runner', 
+                  'title': 'The Maze \n Runner', 
                   'image': 'assets/the_haunted_cover.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Sci-fi', 'Adventure']
                 },
                 {
-                  'title': 'The Hunger Games', 
+                  'title': 'The Hunger \n Games', 
                   'image': 'lib/images/bookcovers/thehungergames.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Dystopian', 'Adventure']
@@ -195,7 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const BookGrid(
               books: [
                 {
-                  'title': 'The Perks \n of Being a Wallflower', 
+                  'title': 'The Perks of \n Being a \n Wallflower', 
                   'image': 'lib/images/bookcovers/theperksofbeingawallflower.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Romance', 'Comedy']
@@ -207,7 +207,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   'genres': ['Young Adult', 'Fiction', 'Romance']
                 },
                 {
-                  'title': 'Simon vs. \n the Homo Sapiens Agenda', 
+                  'title': 'Simon vs. the \n Homo Sapiens \n Agenda', 
                   'image': 'lib/images/bookcovers/simonvs.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Young Adult', 'Romance', 'Drama']
@@ -219,7 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   'genres': ['Childrens literature']
                 },
                 {
-                  'title': 'All the Bright Places', 
+                  'title': 'All the Bright \n Places', 
                   'image': 'lib/images/bookcovers/allthebrightplaces.jpeg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Romance', 'Drama', 'Teen', 'Melodrama']
@@ -433,8 +433,10 @@ class BookGrid extends StatelessWidget {
           itemCount: books.length,
           itemBuilder: (context, index) {
             final book = books[index];
-            return GestureDetector(
-              onTap: () {
+            return Padding(
+              padding: const EdgeInsets.only(right: 15.0), // Memberi jarak antar buku
+              child: GestureDetector(
+                onTap: () {
                   showModalBottomSheet(
                     context: context,
                     isScrollControlled: true,
@@ -446,27 +448,28 @@ class BookGrid extends StatelessWidget {
                       genres: List<String>.from(book['genres']),
                     ),
                   );
-              },      
-              child: Column(
-                children: [
-                  Container(
-                    height: 150,
-                    width: 100,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(book['image']!),
-                        fit: BoxFit.cover,
+                },
+                child: Column(
+                  children: [
+                    Container(
+                      height: 150,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(book['image']!),
+                          fit: BoxFit.cover,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      borderRadius: BorderRadius.circular(8),
                     ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    book['title']!,
-                    style: const TextStyle(fontSize: 14, color: Colors.orange),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+                    const SizedBox(height: 4),
+                    Text(
+                      book['title']!,
+                      style: const TextStyle(fontSize: 14, color: Colors.orange),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
             );
           },
@@ -475,3 +478,4 @@ class BookGrid extends StatelessWidget {
     );
   }
 }
+        
