@@ -1,78 +1,85 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'signup.dart';
+import 'home_screen.dart'; // Import HomeScreen
 
 class LoginPage extends StatelessWidget {
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _inputController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   LoginPage({super.key});
 
-  // Fungsi Validasi Input
-  bool _validateInput(BuildContext context) {
-    if (_emailController.text.trim().isEmpty ||
-        !_emailController.text.trim().contains('@')) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter a valid email address.')),
-      );
-      return false;
-    }
-
-    if (_passwordController.text.trim().isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter a password.')),
-      );
-      return false;
-    }
-    return true;
-  }
-
   Future<void> _login(BuildContext context) async {
-    if (!_validateInput(context)) return; // Cek validasi input sebelum login
+    String input = _inputController.text.trim();
+    String password = _passwordController.text.trim();
+
+    if (input.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please enter both username/email and password.')),
+      );
+      return;
+    }
 
     try {
-      UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      );
+      String email = input;
 
-      // Debugging: Log UserCredential
-      if (kDebugMode) {
-        print("User Logged In: ${userCredential.user}");
+      // Validasi apakah input adalah email atau username
+      if (!RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$").hasMatch(input)) {
+        // Jika input adalah username, ambil email dari Firestore
+        final snapshot = await FirebaseFirestore.instance
+            .collection('users')
+            .where('username', isEqualTo: input)
+            .limit(1)
+            .get();
+
+        if (snapshot.docs.isEmpty) {
+          throw FirebaseAuthException(
+              code: 'user-not-found', message: 'No user found with that username.');
+        }
+
+        email = snapshot.docs.first.data()['email'] as String;
       }
 
-      // Login berhasil
-      // ignore: use_build_context_synchronously
+      // Lakukan proses login dengan email dan password
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Login successful!')),
       );
 
-      // Navigasi ke halaman utama (ganti dengan halaman utama aplikasi Anda)
-      Navigator.pushReplacement(
-        // ignore: use_build_context_synchronously
+      // Setelah login berhasil, arahkan ke HomeScreen dan hapus halaman Login dari stack
+      Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
+        (Route<dynamic> route) => false, // Hapus semua halaman sebelumnya dari stack
       );
     } catch (e) {
-      // Menangani berbagai error dari Firebase
-      if (kDebugMode) {
-        print("Login Error: $e");
-      }
       String errorMessage = "An error occurred. Please try again.";
       if (e is FirebaseAuthException) {
         if (e.code == 'user-not-found') {
-          errorMessage = "No user found for that email.";
+          errorMessage = "No user found with that username or email.";
         } else if (e.code == 'wrong-password') {
           errorMessage = "Incorrect password.";
         }
       }
-      // ignore: use_build_context_synchronously
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(errorMessage)),
       );
     }
+  }
+
+  Future<void> _logout(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Logged out successfully!')),
+    );
   }
 
   @override
@@ -96,63 +103,75 @@ class LoginPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextField(
-                  controller: _emailController,
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-                const SizedBox(height: 16.0),
-                TextField(
-                  controller: _passwordController,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Password',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-                const SizedBox(height: 24.0),
-                ElevatedButton(
-                  onPressed: () => _login(context),
-                  child: const Text('Log In'),
-                ),
-                const SizedBox(height: 24.0),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SignUpPage()),
-                    );
+                StreamBuilder<User?>(
+                  stream: FirebaseAuth.instance.authStateChanges(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    }
+
+                    // Jika user sudah login, tampilkan tombol log out
+                    if (snapshot.hasData) {
+                      return Column(
+                        children: [
+                          const Text('Welcome Back!', style: TextStyle(fontSize: 18)),
+                          const SizedBox(height: 16.0),
+                          ElevatedButton(
+                            onPressed: () => _logout(context),
+                            child: const Text('Log Out'),
+                          ),
+                        ],
+                      );
+                    } else {
+                      // Jika user belum login, tampilkan form login
+                      return Column(
+                        children: [
+                          TextField(
+                            controller: _inputController,
+                            decoration: const InputDecoration(
+                              labelText: 'Username or Email',
+                              border: OutlineInputBorder(),
+                            ),
+                          ),
+                          const SizedBox(height: 16.0),
+                          TextField(
+                            controller: _passwordController,
+                            obscureText: true,
+                            decoration: const InputDecoration(
+                              labelText: 'Password',
+                              border: OutlineInputBorder(),
+                            ),
+                          ),
+                          const SizedBox(height: 24.0),
+                          ElevatedButton(
+                            onPressed: () => _login(context),
+                            child: const Text('Log In'),
+                          ),
+                          const SizedBox(height: 24.0),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => SignUpPage()),
+                              );
+                            },
+                            child: const Text(
+                              "Don't have an account? Sign Up",
+                              style: TextStyle(
+                                color: Colors.blue,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    }
                   },
-                  child: const Text(
-                    "Don't have an account? Sign Up",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
                 ),
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Page'),
-      ),
-      body: const Center(
-        child: Text('Welcome to the app!'),
       ),
     );
   }

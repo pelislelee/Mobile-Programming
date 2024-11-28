@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart'; // Tambahkan ini
 
 class SignUpPage extends StatelessWidget {
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   SignUpPage({super.key});
 
   Future<void> _signUp(BuildContext context) async {
-    // Validasi input
-    if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
+    if (_usernameController.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please enter a username.')),
+      );
+      return;
+    }
+    if (_emailController.text.trim().isEmpty ||
+        _passwordController.text.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please enter both email and password.')),
       );
@@ -26,17 +34,28 @@ class SignUpPage extends StatelessWidget {
     }
 
     try {
-      // Mencoba mendaftar pengguna baru
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      // Mendaftar pengguna baru
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
+
+      // Menyimpan data username ke Firestore
+      await FirebaseFirestore.instance
+          .collection('users') // Nama koleksi
+          .doc(userCredential.user?.uid) // ID dokumen sesuai UID user
+          .set({
+        'username': _usernameController.text.trim(),
+        'email': _emailController.text.trim(),
+        'createdAt': Timestamp.now(), // Timestamp pendaftaran
+      });
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Account created successfully!')),
       );
       Navigator.pop(context); // Kembali ke halaman login
     } on FirebaseAuthException catch (e) {
-      // Menangani error berdasarkan kode kesalahan FirebaseAuth
       String message = 'An error occurred. Please try again later.';
       if (e.code == 'weak-password') {
         message = 'The password is too weak.';
@@ -46,12 +65,10 @@ class SignUpPage extends StatelessWidget {
         message = 'The email address is not valid.';
       }
 
-      // Menampilkan pesan error
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(message)),
       );
     } catch (e) {
-      // Menangani error lain
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error: $e')),
       );
@@ -64,8 +81,7 @@ class SignUpPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Sign Up'),
         centerTitle: true,
-      ),
-      backgroundColor: const Color(0xFFFef3f1), // Ubah background menjadi warna #fef3f1
+      ), 
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -73,10 +89,18 @@ class SignUpPage extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Input untuk email
+            TextField(
+              controller: _usernameController,
+              decoration: const InputDecoration(
+                labelText: 'Username',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 16.0),
             TextField(
               controller: _emailController,
               decoration: const InputDecoration(
@@ -85,7 +109,6 @@ class SignUpPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16.0),
-            // Input untuk password
             TextField(
               controller: _passwordController,
               obscureText: true,
@@ -95,7 +118,6 @@ class SignUpPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24.0),
-            // Tombol Sign Up
             ElevatedButton(
               onPressed: () => _signUp(context),
               child: const Text('Sign Up'),
