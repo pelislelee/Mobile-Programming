@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uas_mobprog/login.dart';
 import 'home_screen.dart';
 import 'theme_provider.dart';
 import 'text_size_provider.dart';
@@ -50,12 +51,12 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   void initState() {
     super.initState();
-    // Mengatur delay selama 3 detik sebelum berpindah ke HomeScreen
+    // Mengatur delay selama 3 detik sebelum berpindah ke LoginPage
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         // ignore: use_build_context_synchronously
         context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
+        MaterialPageRoute(builder: (context) => LoginPage()), // Arahkan ke LoginPage
       );
     });
   }
