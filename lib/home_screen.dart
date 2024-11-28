@@ -311,13 +311,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 {
                   'title': 'Paper Towns', 
                   'image': 'lib/images/bookcovers/papertowns.jpg',
-<<<<<<< HEAD
-                  'description': 'blalblblablaa',
-                  'genres': ['Sci-fi']
-=======
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Romance', 'Comedy', 'Melodrama', 'Adventure']
->>>>>>> f86f980c0456fa8e9adeb1b06e4cbdf86fab8055
                 },
                 {
                   'title': 'The Sisterhood of \n the Traveling Pants', 
