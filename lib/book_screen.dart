@@ -14,10 +14,16 @@ class BookScreen extends StatelessWidget {
     required this.imagePath,
     required this.description,
     required this.genres,
-    });
+  });
 
   @override
   Widget build(BuildContext context) {
+    final chapters = [
+      'Chapter 1: Introduction',
+      'Chapter 2: Advanced Concepts',
+      'Chapter 3: Final Thoughts',
+    ];
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Stack(
@@ -39,7 +45,6 @@ class BookScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     Center(
                       child: Container(
                         width: 120,
@@ -48,18 +53,19 @@ class BookScreen extends StatelessWidget {
                           image: DecorationImage(
                             image: AssetImage(imagePath),
                             fit: BoxFit.cover,
+                          ),
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.2),
+                              blurRadius: 8,
+                              offset: const Offset(0, 4),
                             ),
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.2),
-                                blurRadius: 8,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
-                        ),),),
-                        const SizedBox(height: 16),
-
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
                     Center(
                       child: Text(
                         title,
@@ -72,67 +78,101 @@ class BookScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 16),
-
                     Center(
                       child: Wrap(
                         spacing: 8,
                         children: genres
-                        .map(
-                          (genre) => GenreTag(
-                          genre: genre,
-                          backgroundColor: const Color(0xFFF1B8AC),
-                          ),
-                      )
-                      .toList(),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-
-                  Expanded(child: SingleChildScrollView(
-                    child: Text(
-                      description,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
+                            .map(
+                              (genre) => GenreTag(
+                                genre: genre,
+                                backgroundColor: const Color(0xFFF1B8AC),
+                              ),
+                            )
+                            .toList(),
                       ),
-                      textAlign: TextAlign.justify,
                     ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                // tombol untuk membuka chapterscreen
-                Center(
-                  child: ElevatedButton(
-                    onPressed: (){
-                      //navigasi ke chapter screen
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ChapterScreen(),
+                    const SizedBox(height: 16),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Text(
+                          description,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
                           ),
-                        );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFF1B8AC), 
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24, vertical: 12),
-                      ),
-                      child: const Text(
-                        'Read Chapters',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                         ),
+                          textAlign: TextAlign.justify,
                         ),
-                      ), 
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    // Tombol untuk membuka ChapterScreen
+                    Center(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // Navigasi ke daftar chapter
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ChapterListScreen(
+                                chapters: chapters,
+                              ),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFF1B8AC),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 24, vertical: 12),
+                        ),
+                        child: const Text(
+                          'Read Chapters',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-               ],
-             ),
-            ),
+              ),
             ),
           ),
         ],
-      )
+      ),
+    );
+  }
+}
+
+class ChapterListScreen extends StatelessWidget {
+  final List<String> chapters;
+
+  const ChapterListScreen({super.key, required this.chapters});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Chapters'),
+        backgroundColor: const Color(0xFFF1B8AC),
+      ),
+      body: ListView.builder(
+        itemCount: chapters.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(chapters[index]),
+            trailing: const Icon(Icons.arrow_forward),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ChapterScreen(chapterIndex: index),
+                ),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }
