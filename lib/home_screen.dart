@@ -65,6 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
             fontFamily: 'Knewave',
           ),
         ),
+        
         actions: [
           IconButton(
             icon: const Icon(Icons.search, color: Colors.white),

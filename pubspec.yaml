@@ -100,6 +100,7 @@ flutter:
     - lib/images/slides/slide3.jpeg
     - lib/images/slides/slide4.jpeg
     - lib/images/slides/slide5.jpeg
+    - lib/fonts/OpenSans-VariableFont_wdth,wght.ttf
   #   - images/a_dot_burr.jPpeg
   #   - images/a_dot_ham.jpeg
 

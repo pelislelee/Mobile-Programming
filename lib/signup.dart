@@ -51,9 +51,11 @@ class SignUpPage extends StatelessWidget {
         'createdAt': Timestamp.now(), // Timestamp pendaftaran
       });
 
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Account created successfully!')),
       );
+      // ignore: use_build_context_synchronously
       Navigator.pop(context); // Kembali ke halaman login
     } on FirebaseAuthException catch (e) {
       String message = 'An error occurred. Please try again later.';
@@ -65,10 +67,12 @@ class SignUpPage extends StatelessWidget {
         message = 'The email address is not valid.';
       }
 
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(message)),
       );
     } catch (e) {
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error: $e')),
       );
