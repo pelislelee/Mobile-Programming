@@ -1,4 +1,5 @@
 library default_connector;
+// ignore: depend_on_referenced_packages
 import 'package:firebase_data_connect/firebase_data_connect.dart';
 
 

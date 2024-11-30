@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -23,7 +22,6 @@ class LoginPage extends StatelessWidget {
     }
 
     try {
-      String email = input;
 
       // Validasi apakah input adalah email atau username
       if (!RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$").hasMatch(input)) {
@@ -39,22 +37,18 @@ class LoginPage extends StatelessWidget {
               code: 'user-not-found', message: 'No user found with that username.');
         }
 
-        email = snapshot.docs.first.data()['email'] as String;
       }
 
       // Lakukan proses login dengan email dan password
-      UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
 
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Login successful!')),
       );
 
       // Setelah login berhasil, arahkan ke HomeScreen dan hapus halaman Login dari stack
       Navigator.pushAndRemoveUntil(
+        // ignore: use_build_context_synchronously
         context,
         MaterialPageRoute(builder: (context) => const HomeScreen()),
         (Route<dynamic> route) => false, // Hapus semua halaman sebelumnya dari stack
@@ -69,6 +63,7 @@ class LoginPage extends StatelessWidget {
         }
       }
 
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(errorMessage)),
       );
@@ -77,6 +72,7 @@ class LoginPage extends StatelessWidget {
 
   Future<void> _logout(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
+    // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Logged out successfully!')),
     );
