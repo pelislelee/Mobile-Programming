@@ -4,13 +4,33 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'signup.dart';
 import 'home_screen.dart'; // Import HomeScreen
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final TextEditingController _inputController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  LoginPage({super.key});
+  User? _currentUser;
 
-  Future<void> _login(BuildContext context) async {
+  @override
+  void initState() {
+    super.initState();
+    _checkCurrentUser();
+  }
+
+  Future<void> _checkCurrentUser() async {
+    final user = FirebaseAuth.instance.currentUser;
+    setState(() {
+      _currentUser = user;
+    });
+  }
+
+  Future<void> _login() async {
     String input = _inputController.text.trim();
     String password = _passwordController.text.trim();
 
@@ -22,8 +42,8 @@ class LoginPage extends StatelessWidget {
     }
 
     try {
-
       // Validasi apakah input adalah email atau username
+      String email = input;
       if (!RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$").hasMatch(input)) {
         // Jika input adalah username, ambil email dari Firestore
         final snapshot = await FirebaseFirestore.instance
@@ -36,22 +56,22 @@ class LoginPage extends StatelessWidget {
           throw FirebaseAuthException(
               code: 'user-not-found', message: 'No user found with that username.');
         }
-
+        email = snapshot.docs.first.get('email');
       }
 
-      // Lakukan proses login dengan email dan password
-
-      // ignore: use_build_context_synchronously
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Login successful!')),
+      // Login menggunakan email
+      final userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
       );
 
-      // Setelah login berhasil, arahkan ke HomeScreen dan hapus halaman Login dari stack
-      Navigator.pushAndRemoveUntil(
-        // ignore: use_build_context_synchronously
-        context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
-        (Route<dynamic> route) => false, // Hapus semua halaman sebelumnya dari stack
+      setState(() {
+        _currentUser = userCredential.user;
+      });
+
+      // Login berhasil
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Login successful!')),
       );
     } catch (e) {
       String errorMessage = "An error occurred. Please try again.";
@@ -63,16 +83,18 @@ class LoginPage extends StatelessWidget {
         }
       }
 
-      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(errorMessage)),
       );
     }
   }
 
-  Future<void> _logout(BuildContext context) async {
+  Future<void> _logout() async {
     await FirebaseAuth.instance.signOut();
-    // ignore: use_build_context_synchronously
+    setState(() {
+      _currentUser = null;
+    });
+
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Logged out successfully!')),
     );
@@ -96,76 +118,62 @@ class LoginPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Center(
           child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                StreamBuilder<User?>(
-                  stream: FirebaseAuth.instance.authStateChanges(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const CircularProgressIndicator();
-                    }
-
-                    // Jika user sudah login, tampilkan tombol log out
-                    if (snapshot.hasData) {
-                      return Column(
-                        children: [
-                          const Text('Welcome Back!', style: TextStyle(fontSize: 18)),
-                          const SizedBox(height: 16.0),
-                          ElevatedButton(
-                            onPressed: () => _logout(context),
-                            child: const Text('Log Out'),
+            child: _currentUser != null
+                ? Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text(
+                        'Welcome Back!',
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 16.0),
+                      ElevatedButton(
+                        onPressed: _logout,
+                        child: const Text('Log Out'),
+                      ),
+                    ],
+                  )
+                : Column(
+                    children: [
+                      TextField(
+                        controller: _inputController,
+                        decoration: const InputDecoration(
+                          labelText: 'Username or Email',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                      const SizedBox(height: 16.0),
+                      TextField(
+                        controller: _passwordController,
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          labelText: 'Password',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                      const SizedBox(height: 24.0),
+                      ElevatedButton(
+                        onPressed: _login,
+                        child: const Text('Log In'),
+                      ),
+                      const SizedBox(height: 24.0),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => SignUpPage()),
+                          );
+                        },
+                        child: const Text(
+                          "Don't have an account? Sign Up",
+                          style: TextStyle(
+                            color: Colors.blue,
+                            decoration: TextDecoration.underline,
                           ),
-                        ],
-                      );
-                    } else {
-                      // Jika user belum login, tampilkan form login
-                      return Column(
-                        children: [
-                          TextField(
-                            controller: _inputController,
-                            decoration: const InputDecoration(
-                              labelText: 'Username or Email',
-                              border: OutlineInputBorder(),
-                            ),
-                          ),
-                          const SizedBox(height: 16.0),
-                          TextField(
-                            controller: _passwordController,
-                            obscureText: true,
-                            decoration: const InputDecoration(
-                              labelText: 'Password',
-                              border: OutlineInputBorder(),
-                            ),
-                          ),
-                          const SizedBox(height: 24.0),
-                          ElevatedButton(
-                            onPressed: () => _login(context),
-                            child: const Text('Log In'),
-                          ),
-                          const SizedBox(height: 24.0),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => SignUpPage()),
-                              );
-                            },
-                            child: const Text(
-                              "Don't have an account? Sign Up",
-                              style: TextStyle(
-                                color: Colors.blue,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
-                        ],
-                      );
-                    }
-                  },
-                ),
-              ],
-            ),
+                        ),
+                      ),
+                    ],
+                  ),
           ),
         ),
       ),
