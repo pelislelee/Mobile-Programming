@@ -73,6 +73,12 @@ class _LoginPageState extends State<LoginPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Login successful!')),
       );
+
+      // Arahkan ke HomeScreen dan hapus halaman login
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
+      );
     } catch (e) {
       String errorMessage = "An error occurred. Please try again.";
       if (e is FirebaseAuthException) {
