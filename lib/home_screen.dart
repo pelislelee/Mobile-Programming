@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:uas_mobprog/login.dart';
 import 'book_screen.dart';
 import 'search_screen.dart';
-
-
+ 
+ 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
-
+ 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
-
+ 
 class _HomeScreenState extends State<HomeScreen> {
   late PageController _pageController;
   int _currentPage = 0;
   late Timer _timer;
-
+ 
   final List<String> _images = [
     'lib/images/slides/slide1.jpeg',
     'lib/images/slides/slide2.jpeg',
@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     'lib/images/slides/slide4.jpeg',
     'lib/images/slides/slide5.jpeg',
   ];
-
+ 
   @override
   void initState() {
     super.initState();
@@ -42,14 +42,14 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     });
   }
-
+ 
   @override
   void dispose() {
     _timer.cancel();
     _pageController.dispose();
     super.dispose();
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
             fontFamily: 'Knewave',
           ),
         ),
-        
+       
         actions: [
           IconButton(
             icon: const Icon(Icons.search, color: Colors.white),
@@ -102,54 +102,38 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             ),
-
-            // Filter Chips Section
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 16),
-              child: Wrap(
-                spacing: 0.1,
-                runSpacing: 4.0,
-                children: [
-                  FilterChipWidget(label: 'All', backgroundColor: Color(0xFFB2DFDB)),
-                  FilterChipWidget(label: 'Romance', backgroundColor: Color(0xFFF8BBD0)),
-                  FilterChipWidget(label: 'Fantasy', backgroundColor: Color(0xFFE1BEE7)),
-                  FilterChipWidget(label: 'Horror', backgroundColor: Color(0xFFFFCDD2)),
-                  FilterChipWidget(label: 'Mystery', backgroundColor: Color(0xFFBBDEFB)),
-                  FilterChipWidget(label: 'Comedy', backgroundColor: Color(0xFFFFF9C4)),
-                ],
-              ),
-            ),
-
+ 
+ 
             // Section Title and Book Grid
             const SectionTitle(title: 'Young Adult Romance'),
             const BookGrid(
               books: [
                 {
-                  'title': 'The Fault \n in Our Stars', 
+                  'title': 'The Fault \n in Our Stars',
                   'image': 'lib/images/bookcovers/thefaultinourstars.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Romance',]
                 },
                 {
-                  'title': 'Eleanor & Park', 
+                  'title': 'Eleanor & Park',
                   'image': 'lib/images/bookcovers/eleanorandpark.jpeg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Romance']
                 },
                 {
-                  'title': 'Five Feet Apart', 
+                  'title': 'Five Feet Apart',
                   'image': 'lib/images/bookcovers/five-feet-apart-cover.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Romance']
                 },
                 {
-                  'title': 'Anna and \n the French Kiss', 
+                  'title': 'Anna and \n the French Kiss',
                   'image': 'lib/images/bookcovers/annaandthefrenchkiss.jpeg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Romance']
                 },
                 {
-                  'title': 'To All the Boys \n I’ve Loved Before', 
+                  'title': 'To All the Boys \n I’ve Loved Before',
                   'image': 'lib/images/bookcovers/toalltheboys.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Romance']
@@ -160,175 +144,175 @@ class _HomeScreenState extends State<HomeScreen> {
             const BookGrid(
               books: [
                 {
-                  'title': 'Percy Jackson \n & The Olympians: \n The Lightning Thief', 
+                  'title': 'Percy Jackson \n & The Olympians: \n The Lightning Thief',
                   'image': 'lib/images/bookcovers/percyjackson.jpeg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Fantasy', 'Adventure']
                 },
                 {
-                  'title': 'Harry Potter and \n the Sorcerers Stone', 
+                  'title': 'Harry Potter and \n the Sorcerers Stone',
                   'image': 'lib/images/bookcovers/harrypotter.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Fantasy', 'Adventure']
                 },
                 {
-                  'title': 'Six of Crows', 
+                  'title': 'Six of Crows',
                   'image': 'lib/images/bookcovers/sixofcrows.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Fantasy', 'Crime']
                 },
                 {
-                  'title': 'The Maze Runner', 
+                  'title': 'The Maze Runner',
                   'image': 'assets/the_haunted_cover.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Sci-fi', 'Adventure']
                 },
                 {
-                  'title': 'The Hunger Games', 
+                  'title': 'The Hunger Games',
                   'image': 'lib/images/bookcovers/thehungergames.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Dystopian', 'Adventure']
                 },
               ],
             ),
-
+ 
             const SectionTitle(title: 'Coming of Age'),
             const BookGrid(
               books: [
                 {
-                  'title': 'The Perks \n of Being a Wallflower', 
+                  'title': 'The Perks \n of Being a Wallflower',
                   'image': 'lib/images/bookcovers/theperksofbeingawallflower.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Romance', 'Comedy']
                 },
                 {
-                  'title': 'Looking for Alaska', 
+                  'title': 'Looking for Alaska',
                   'image': 'lib/images/bookcovers/lookingforalaska.webp',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Young Adult', 'Fiction', 'Romance']
                 },
                 {
-                  'title': 'Simon vs. \n the Homo Sapiens Agenda', 
+                  'title': 'Simon vs. \n the Homo Sapiens Agenda',
                   'image': 'lib/images/bookcovers/simonvs.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Young Adult', 'Romance', 'Drama']
                 },
                 {
-                  'title': 'Wonder', 
+                  'title': 'Wonder',
                   'image': 'lib/images/bookcovers/wonder.webp',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Childrens literature']
                 },
                 {
-                  'title': 'All the Bright Places', 
+                  'title': 'All the Bright Places',
                   'image': 'lib/images/bookcovers/allthebrightplaces.jpeg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Romance', 'Drama', 'Teen', 'Melodrama']
                 },
               ],
             ),
-
+ 
             const SectionTitle(title: 'Mystery & Thriller'),
             const BookGrid(
               books: [
                 {
-                  'title': 'One of Us Is Lying', 
+                  'title': 'One of Us Is Lying',
                   'image': 'lib/images/bookcovers/oneofusislying.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Mystery', 'Young adult literature']
                 },
                 {
-                  'title': 'A Good Girls \n Guide to Murder', 
+                  'title': 'A Good Girls \n Guide to Murder',
                   'image': 'lib/images/bookcovers/agoodgirlsguide.jpeg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Mystery', 'Thriller', 'Horror', 'Drama']
                 },
                 {
-                  'title': 'We Were Liars', 
+                  'title': 'We Were Liars',
                   'image': 'lib/images/bookcovers/wewereliars.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Thriller', 'Young adult literature']
                 },
                 {
-                  'title': 'Truly Devious', 
+                  'title': 'Truly Devious',
                   'image': 'lib/images/bookcovers/trulydevious.webp',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Mystery', 'Fiction']
                 },
                 {
-                  'title': 'The Inheritance \n Games', 
+                  'title': 'The Inheritance \n Games',
                   'image': 'lib/images/bookcovers/theinheritancegames.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Mystery', 'Fiction']
                 },
               ],
             ),
-
+ 
             const SectionTitle(title: 'Science Fiction & Dystopian'),
             const BookGrid(
               books: [
                 {
-                  'title': ' Divergent ', 
+                  'title': ' Divergent ',
                   'image': 'lib/images/bookcovers/divergent.jpeg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Sci-fi']
                 },
                 {
-                  'title': ' The Giver ', 
+                  'title': ' The Giver ',
                   'image': 'lib/images/bookcovers/thegiver.png',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Sci-fi', 'Action', 'Drama', 'Adventure']
                 },
                 {
-                  'title': ' Legend ', 
+                  'title': ' Legend ',
                   'image': 'lib/images/bookcovers/legend.jpeg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Sci-fi', 'Dystopian', 'Young adult literature']
                 },
                 {
-                  'title': ' Red Queen ', 
+                  'title': ' Red Queen ',
                   'image': 'lib/images/bookcovers/redqueen.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.a',
                   'genres': ['Sci-fi', 'Fantasy']
                 },
                 {
-                  'title': ' Scythe ', 
+                  'title': ' Scythe ',
                   'image': 'lib/images/bookcovers/scythe.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Scifi', 'Adventure', 'Dystopian']
                 },
               ],
             ),
-
+ 
             const SectionTitle(title: 'Friendship & Life Lessons'),
             const BookGrid(
               books: [
                 {
-                  'title': 'I’ll Give You \n the Sun', 
+                  'title': 'I’ll Give You \n the Sun',
                   'image': 'lib/images/bookcovers/illgiveyouthesun.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Young adult', 'Romance']
                 },
                 {
-                  'title': 'Paper Towns', 
+                  'title': 'Paper Towns',
                   'image': 'lib/images/bookcovers/papertowns.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Romance', 'Comedy', 'Melodrama', 'Adventure']
                 },
                 {
-                  'title': 'The Sisterhood of \n the Traveling Pants', 
+                  'title': 'The Sisterhood of \n the Traveling Pants',
                   'image': 'lib/images/bookcovers/thesisterhood.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Comedy', 'Romance', 'Melodrama']
                 },
                 {
-                  'title': 'If I Stay', 
+                  'title': 'If I Stay',
                   'image': 'lib/images/bookcovers/ifistay.png',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Drama', 'Fantasy', 'Music', 'Romance']
                 },
                 {
-                  'title': 'The Outsiders', 
+                  'title': 'The Outsiders',
                   'image': 'lib/images/bookcovers/theoutsiders.jpg',
                   'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                   'genres': ['Young adult literature', 'Drama']
@@ -341,13 +325,13 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
+ 
 // SlideshowImage Widget
 class SlideshowImage extends StatelessWidget {
   final String imagePath;
-
+ 
   const SlideshowImage({super.key, required this.imagePath});
-
+ 
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -362,42 +346,14 @@ class SlideshowImage extends StatelessWidget {
     );
   }
 }
-
-// FilterChipWidget Class
-class FilterChipWidget extends StatelessWidget {
-  final String label;
-  final Color backgroundColor;
-
-  const FilterChipWidget({
-    super.key,
-    required this.label,
-    required this.backgroundColor,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ChoiceChip(
-      label: Text(
-        label,
-        style: const TextStyle(color: Colors.black),
-      ),
-      selected: false,
-      backgroundColor: backgroundColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-        side: BorderSide(color: Colors.grey.shade300),
-      ),
-      onSelected: (selected) {},
-    );
-  }
-}
+ 
 
 // SectionTitle Class
 class SectionTitle extends StatelessWidget {
   final String title;
-
+ 
   const SectionTitle({super.key, required this.title});
-
+ 
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -416,13 +372,13 @@ class SectionTitle extends StatelessWidget {
     );
   }
 }
-
+ 
 // BookGrid Class
 class BookGrid extends StatelessWidget {
   final List<Map<String, dynamic>> books;
-
+ 
   const BookGrid({super.key, required this.books});
-
+ 
   @override
   Widget build(BuildContext context) {
     return Padding(
